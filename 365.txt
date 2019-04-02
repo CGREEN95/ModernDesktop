@@ -1,0 +1,12 @@
+MS 365 Enterprise:
+	* 365 - Office ProPlus and online services
+	* Windows 10 ENT 
+	* Enterprise Mobility + Security
+
+Subscription Models:
+	* Enterprise - E3 or E5
+	* Business - Up to 300 licenses
+	* Education - For EDU
+	* Firstline Workers - Windows 10 E3 without Virtualization Rights
+
+
