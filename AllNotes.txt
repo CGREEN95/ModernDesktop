@@ -1,0 +1,285 @@
+***Licensing in MS 365***
+Admin center allows you to create accounts and assign licenses to those accounts
+
+MS 365 Enterprise:
+	* 365 - Office ProPlus and online services
+	* Windows 10 ENT 
+	* Enterprise Mobility + Security
+
+Subscription Models:
+	* Enterprise - E3 or E5
+	* Business - Up to 300 licenses
+	* Education - For EDU
+	* Firstline Workers - Windows 10 E3 without Virtualization Rights
+	
+Azure:
+Compute Services		- VMs and Containers
+Cloud Storage			- Blob, File, Queue, Table Storage
+Networking 			- Firewall, Load Balancing, VPN, etc
+App Host			- Cloud Services, Web Apps, etc
+Artificial Intelligence (AI)	- Cortana, Bots, Cognitive
+Internet of Things (IOT)	- Analytics
+Integration			- API Management
+Security			- MFA
+
+Definition of a VM on Azure:
+Size				- Processor Speed, Memory, Storage, and bandwidth
+Region				- Geographic location for data center
+Network				- Network Security Groups 
+Resource Groups			- Grouped into logical containers
+
+Creating Resouces:
+az group create --name --location
+Keeps everything together under one unit
+
+Creating a VM:
+User 				- USERNAME=azureuser
+				  PASSWORD=$(openssl rand -base64 32
+
+VM				- az vm create
+				--name myVM \
+  				--resource-group bb03623d-40f7-490c-be64-3dc9ae509202 \
+  				--image Win2016Datacenter \
+  				--size Standard_DS2_v2 \
+  				--location eastus \
+  				--admin-username $USERNAME \
+  				--admin-password $PASSWORD
+				
+Exchange Online:
+    *Mailboxes and Online Archives
+    *Calendars
+    *View and Edit office attachements online
+    *Sahred Mailboxes
+    *Message Policy and Compliance
+    *AntiSpam and AntiMalware
+    *Configurable Mail flow
+    *Mobile and multiplatform access
+    *Hybrid Deployment
+    
+Why Exchange online over server version (on premise)
+    *More storage, better availability, backups, intergration, newest features and no need to admin online databases or servers
+
+SharePoint Online:
+    *Build sites, directories, improve workflow and discover
+    
+Why SharePoint online over server version (on premise)
+    *Anit-Malware, data loss prevention, Encryption at rest
+    
+Microsoft Teams:
+    *Chat, calls, team meetings, collab with intergrated apps, and connect across devices. 
+    
+Intune:
+    *Uses Azure AD and manages devices for organizations.
+    *Support BYOD
+    *Control access of Office 365 on unmanged devices (Kiosk)
+    *Ensure devices comply with security policies
+	
+Enterprise Deployment and Office 365 ProPlus:
+	1. Assessment of Enviornment and Network
+	2. Hardware and Software will work with new applications
+
+Helpful Tools:
+	*Windows Analytics Upgrade Readiness - Application and Driver Testing
+	*Readiness Toolkit for Office add-ins and VBS - Compatibility Testing
+	*Desk App Assure - MS Engineer can work with you.  Addresses Issues.
+
+MS 365 Peer-to-Peer Options:
+	*BranchCache - Fetches content from a central source and distributes to different locations for clients PCs to pull
+	*Peer Cache - Works with BranchCache.  Client to Client share source files from local cache.
+	*Delivery Optimization - Download from peers, WU, WSUS, WU for Business, or configuration manager.
+
+Deployment Options - Windows:
+	*Windows Autopilot - Customize OOBE for Deploying Specific Apps and settings.
+	*In-Place Upgrade - One Version to the next for Windows.
+	*Dynamic Provisioning - Windows Configuration Designer
+	*Subscription Activation - Move from Pro to Ent and transfer licenses.
+
+Deployment Options - Office 365 ProPlus:
+	*Configuration Manager
+	*Office Deployement Tool
+	*Intune (From the cloud)
+	*365 Portal - Users install on own
+
+Updates:
+	*Feature - v1709 to v1809
+	*Quality - Patch Tuesday and Cumulative
+
+Service Channels:
+	Insider
+	Semi
+	LTSC
+
+Office 365 Channels:
+	*Monthly - Every Month
+	*Semi Targeted - Pilot users
+	*Semi - Six months
+
+
+*** Adding driver w/Powershell ***
+Image mounted to - "C:\Win10\image"
+Drivers located at "C:\Drivers\NewDriver.inf"
+Powershell - C:\ Add-WindowsDriver -Path "C:\Win10\image" -Driver "C:\Drivers\NewDriver.inf" -ForceUnsigned
+
+*** Adding driver w/DISM ***
+DISM -path "C:\Win10\image" -Driver "C:\Drivers\NewDrive.inf" -ForceUnsigned
+
+*** Partial Product Key/Edition/License Status ***
+slmgr -dli
+slmgr -dlv
+
+*** View all power schemes ***
+PowerCfg -List
+
+*** changepk.exe ***
+Use this tool to Upgrade to another edition of the same Windows Version
+Changepk.exe /ProductKey <KEY>
+
+*** Create Report of Collected Data (Paging) ***
+perfmon.exe /report
+Can configure alerts by creating a Data Collector set (Disk space getting low)
+
+*** Remote Assistance ***
+msra.exe will launch remote Assistance
+
+*** Windows 7 ENT ***
+Can upgrade to Windows 10 EDU or ENT
+
+*** Enable Telnet ***
+dism /online /Enable-Feature /FeatureName:TelnetClient
+
+*** RDP Port ***
+Port 3389
+Terminal Server and RDP Access
+
+*** Get-PnpDevice ***
+Displays info about about Plug n Play devices
+Get-PnpDevice -PresentOnly -Status ERROR,UNKNOWN (Devices that are having issues)
+
+*** Credential Guard Requirements ***
+*Win 10 ENT
+*UEFI 2.3.1 or higher
+*Secure Boot
+*VT-x or AMD-V and SLAT
+*x64 bit and Physical PC
+
+*** Key Activation by Phone ***
+slui.exe 4
+Restart Software Protection Service
+
+*** Add-VpnConnection ***
+Add-VpnConnection -Name "Test" -ServerAddress "10.1.1.100" -TunnelType "Pptp" -EncryptionLevel "Required" -AuthenticationMethod MSChapv2 -UseWinLogonCredential -AllUserConnection -RememberCredential -PassThru
+
+*** Storage Space ***
+Must be a Basic Disk
+Can be External or Internal
+
+*** Storage Layout ***
+Simple - Stripes data across disks/Max capacity/Increase Throughput (1 or more disk/DOES NOT protect from Disk Failure)
+Mirror - Duplicates data on 2 or 3 disks.  Helps protect disk failure
+Parity - 3 or more disks.  Protect from a single disk failure
+
+Provisioning:
+Thin - Uses space as needed
+Fixed - Uses space equal to Volume size
+
+*** Service ***
+Get-Service -Name "Print Spooler" -ComputerName computer1 | Set-Service -Status Running
+
+*** File History ***
+Default locations:
+Libraries
+Desktop
+Favorites
+Contacts
+
+*** New Drive ***
+get-disk -Number 2 | Initialize-Disk -PartitionStyle GPT -PassThru | New-Partition -UseMaximumSize -AssignDriveLetter | Format-Volume -FileSystem NTFS
+
+*** Update & Security ***
+For Developers:
+MS Store = Only MS Store
+SideLoad = Other Sources
+Dev Mode = Any Signed/Trusted
+
+*** Editions ***
+Starter/Home/Prem = Home/Pro/Pro-Edu/Edu
+Pro/Ult/(ENT) = ENT and Below (Edu & ENT)
+
+*** 802.11 ***
+a = 54 @ 5
+b = 11 @ 2.4
+g = 54 @ 2.4
+n = 133 @ 2.4 & 5
+ac = 433 @ 5
+
+*** System REQ ***
+CPU = 1 GHz 
+RAM = 1GB-2GB
+HDD = 16GB-20GB
+Display = 800x600
+
+*** Hyper-V ***
+OS: ENT/EDU/PRO
+HW: x64 with SLAT
+    VT-C Support
+    4GB MEM
+BIOS: DEP
+      Virtualization Tech
+CMD: Run Systeminfo
+
+Powershell:
+    New-VM -name "TEST" -memoryStatupBytes = 1GB -VHDPath C:\Drivers\Test.vhd
+    
+*** Secure Boot ***         *
+==============              *M
+[Secure Boot ]  Bootkit     *E
+[    UEFI    ]              *A
+==============              *S
+    #                       *U
+    #                       *R
+==============              *E
+[Trusted Boot]              *D 
+[OS Loader   ]              * 
+[Kernel      ]              *B
+[System DRV  ]  Rootkit     *O
+[System Files]              *O
+[ELAM DRV    ]              *T
+==============              *
+    #
+    #
+3RD Party Drivers
+    #
+    #
+Anti-Malware
+    #
+    #
+Windows Sign In
+
+Microsoft 365: Office 365 + Windows 10
+
+*Device and App Readiness - 
+Windows Analytics, SCCM, HW/SW Inventory and Broswer Compatibility
+
+*Directory and Networking Readiness - 
+Impement Azure AD (Peer Cache, Branch Cache, C2R Compression, Exchange)
+
+*Office and LOB App Delivery - 
+MSIs and Office Click-to-Run
+
+*Users Files and Settings Migration - 
+USMT, manual transfer, scripting (OneDrive Sync)
+
+*Security and Compliance - 
+MFA, GPO, Bitlocker, Defender AV
+
+*OS Deployment and Feature Updates - 
+PC Refresh, PC Replacement, or New PC (SCCM, MDT, AutoPilot/Intune)
+
+*User Communication and Training -
+FastTrack Services and Productivity Library
+
+*Windows and Office as a Service - 
+Semi-Annual Feature Updates (Fall and Spring) Serviced for 18 Months
+Montly Cumulaitve Updates
+SCCM CB Task Sequence and Phased Deployment
+Intune, Windows Update for Business
