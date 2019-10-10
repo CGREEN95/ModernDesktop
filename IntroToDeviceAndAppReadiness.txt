@@ -1,0 +1,22 @@
+*Windows Analytics Upgrade Readiness*
+Agent-less tool to inventory environment
+Needs Azure AD Subscription/Log Analytics workspace
+
+*Readiness Toolkit*
+Identify issues with VBA macros and add-ins
+
+*Implement the device and app readiness process*
+Take an inventory
+Prioritize apps and hardware
+Test updates for compatibility
+Remediate issues
+
+-Detailed assessment, IDs compatibility issues, provides supported links
+-Windows 10 Compatibility Cookbook
+-Enterprise Mode Site list manager
+
+*Desktop App Assure*
+FastTrack Center (Windows 10 or MS 365 services)
+Support helps figure out issues
+
+
