@@ -1,0 +1,48 @@
+*IN-PLACE UPGRADES*
+Consider the following:
+	OS and Edition paths
+	Hardware Resources
+	Windows 10 Compatible Apps
+		Setup.exe /auto upgrade /compat scanonly
+	32-bit to 32-bit and 64-bit to 64-bit
+	Language must match language (English to English)
+	Dual/Multiboot not supported for in place
+	Windows To Go/VHD no in place
+	Standard image only
+
+*MIGRATIONS*
+Side-By-Side
+Wipe-And-Load
+
+*CLEAN INSTALLATIONS*
+DVD
+USB
+Custom Image
+
+*MITIGATING COMPATIBILITY ISSUES*
+Modify comfig of app
+apply updates
+upgrate to compatible version
+Modify config for security
+Run app in VM
+Compatibility Mode
+Look for other options (Perform similiar functions)
+
+*NESTED VIRTUALIZATION*
+Hyper-V within VM
+Device Guard
+Credential Guard
+Device Health Attestation
+VM Secure Boot
+
+Enable Nested Virtualization
+Set-VMProcessor -VMName VM1 -ExposeVirtualizationExtensions \$true
+
+MAC Address Spoofing
+Get-VMNetworkAdapter -VMName HOST1 \| Set-VMNetworkAdapter -MacAddressSpoofing On
+
+VM with nested Virtualization
+-Can't use Device Guard or Credential Guard
+-Can't add or remove static memory while running
+
+
