@@ -1,0 +1,14 @@
+AUTOPILOT:
+Device Registration
+*OEM
+*Reseller, distributor, or partner
+*Automatic
+*Manual
+*Device ID
+
+INTUNE:
+MDM or Mobile Device Management System
+Enroll > Configure > Protect > Retire
+
+Co-Managent:
+Configuration manager and Intune
