@@ -1,3 +1,5 @@
+Endpoint Manager encompasses the following:
+
 AUTOPILOT:
 Device Registration
 *OEM
@@ -12,3 +14,11 @@ Enroll > Configure > Protect > Retire
 
 Co-Managent:
 Configuration manager and Intune
+
+Configuration Manager
+
+Desktop Analytics
+
+Azure AD
+
+Endpoint Manager Admin Center
